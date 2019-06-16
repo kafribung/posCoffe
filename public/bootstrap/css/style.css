@@ -1,0 +1,42 @@
+.header{
+    margin-top: 1%;
+}
+.header img {
+    float: left;
+}
+.header .hai {
+    float: left;
+}
+hr{
+    color: black;
+    size: 5px; 
+}
+.div1 {
+    width: 22px;
+    height: 22px;
+    border: 1px solid black; 
+    margin-top: 5px;
+}
+.anu {
+    margin-left: 15%;
+}
+
+.anu1 {
+    margin-left: 18%;
+}
+
+.tanggal{
+    margin-left: 65%;
+}
+
+ol li {
+    font-size: 9pt;
+}
+
+.judul{
+    margin-top: -20px;
+}
+
+.ttd{
+    margin-top: -15px;
+}
