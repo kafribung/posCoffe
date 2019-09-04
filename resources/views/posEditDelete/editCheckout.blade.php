@@ -11,15 +11,16 @@
 
           </div>
           <div class="panel-body"> 
-            <form action="/pesanan/create" method="POST">
+            <form action="/checkout/{{$datas -> id}}/update" method="POST">
               {{csrf_field()}}
               <div class="form-group">
+
                 <label for="namaPemesan">Nama</label>
-                <input name="nama" type="text" class="form-control" id="namaPemesan" placeholder="Pemesan" autocomplete="off" required="">
+                <input name="nama" type="text" class="form-control" id="namaPemesan" placeholder="Pemesan" autocomplete="off" required="" value="{{$datas -> nama}}">
               </div>
               <div class="form-group">
                 <label for="tempatPemesan">Tempat</label>
-                <input name="tempat" type="text" class="form-control" id="tempatPemesan" placeholder="Tempat" autocomplete="off" required="">
+                <input name="tempat" type="text" class="form-control" id="tempatPemesan" placeholder="Tempat" autocomplete="off" required="" value="{{$datas -> tempat}}">
               </div>
 
               <!-- Tabel Makanan -->
@@ -29,7 +30,6 @@
                   <thead class="thead-dark">
                     <tr>
                       <th>Kode Makanan</th>
-                      <th>Gambar</th>
                       <th>Nama</th>
                       <th>Harga</th>
                       <th>Jumlah</th>
@@ -40,7 +40,6 @@
                     @foreach($makanans as $makanan)
                     <tr>
                       <td>Mk</td>
-									    <td><img src="{{asset('images/'.$makanan->gambar)}}" alt="no image" width="100" height="100"></td>
                       <td>{{$makanan->nama}}</td>
                       <td>{{$makanan->harga}}</td>
                       <td>
@@ -73,7 +72,6 @@
                   <thead class="thead-dark">
                     <tr>
                       <th>Kode Minuman</th>
-                      <th>Gambar</th>
                       <th>Nama</th>
                       <th>Harga</th>
                       <th>Jumlah</th>
@@ -84,7 +82,6 @@
                       @foreach($minumans as $minuman)
                       <tr>
                         <td>Mn</td>
-			  						    <td><img src="{{asset('images/'.$minuman->gambar)}}" alt="no image" width="100" height="100"></td>
                         <td>{{$minuman->nama}}</td>
                         <td>{{$minuman->harga}}</td>
 
@@ -115,7 +112,7 @@
 
               <div class="form-group">
                 <label for="">Konfirmasi</label>
-                <input :disabled="seti" type="checkbox" @change="ubahM()" >
+                <input :disabled="seti" type="checkbox" @change="ubah(),ubahM()" >
               </div>
                 <button v-if="konfir" type="submit" class="btn btn-success">Tambah</button>
             </form>
@@ -176,7 +173,7 @@
           axios.put('api/makanan/'+this.id[i],{
             jumlah : this.jumlah[i]
           }).then(()=>{
-            Swal.fire("Berhasil", "Data berhasil ditambah", "success")
+            Swal.fire("Mantul", "success", "success")
           }).catch(e => console.log(e))
         }
         this.konfir = true

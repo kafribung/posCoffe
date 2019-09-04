@@ -3,21 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pesan;
+use App\Stok;
 
-class TerjualController extends Controller
+class StokController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         
-        $data = Pesan::latest()->where('bayar', '1')->paginate(10);
-        
-        return view('posUser.terjual')->withDatas($data);
+        $data = Stok::get()->sum('stok_kopi');
+        return view('posAdmin.stok')->withStoks($data);
     }
 
     /**
@@ -25,9 +24,14 @@ class TerjualController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $stok = new Stok;
+        $stok->stok_kopi = $request->stok;
+        $stok->save();
+
+        return redirect('/stok')->with('sukses', 'Stok Kopi Berhasil Ditambahkan');
+
     }
 
     /**

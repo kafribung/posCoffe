@@ -3,21 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pesan;
+use App\Pengeluaran;
+use App\Laporan;
 
-class TerjualController extends Controller
+class PengeluaranController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        
-        $data = Pesan::latest()->where('bayar', '1')->paginate(10);
-        
-        return view('posUser.terjual')->withDatas($data);
+        $data = Pengeluaran::latest()->get();
+        return view('posUser/pengeluaran')->withDatas($data);
     }
 
     /**
@@ -25,9 +24,20 @@ class TerjualController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $pengeluaran = new Pengeluaran;
+        $pengeluaran->deskripsi = $request->deskripsi;
+        $pengeluaran->jumlah = $request->jumlah;
+        $pengeluaran->harga = $request->harga;
+        $pengeluaran->save();
+
+        $laporan= new Laporan;
+        $laporan->kasBesar = -1 * $request->harga;
+        $laporan->save(); 
+
+        return redirect('/pengeluaran');
+
     }
 
     /**

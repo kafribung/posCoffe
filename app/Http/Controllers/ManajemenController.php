@@ -31,7 +31,7 @@ class ManajemenController extends Controller
 
         User::create([
             "name"=> $request->username,
-            "email"=> $request->password,
+            "email"=> $request->email,
             "password"=> $data
         ]);
         return redirect('/manajemen');with('sukses', 'User berhasil ditambah!');

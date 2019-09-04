@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::put('/minuman/{id}', 'API\MakananController@index');
 Route::put('/makanan/{id}', 'API\MakananController@update');
 Route::put('/print/{id}', 'CheckoutController@update');
+Route::get('/tanggal/{tanggal}', 'API\TanggalController@index');
+Route::get('/tanggalAnalisa/{tanggal}', 'API\TglanalisaController@index');
+/*Belum Dipaki*/
+Route::get('/tatanggalTerjual/{tanggal}', 'API\TgllaporanController@index'); 

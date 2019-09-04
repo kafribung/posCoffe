@@ -24,26 +24,26 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th>#</th>
+									<th>Kode</th>
 									<th>Gambar</th>
 									<th>Nama</th>
 									<th>Harga</th>
-									<th>Stok</th>
+									<th>Jenis</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
 								@foreach($datas as $data)
 								<tr>
-									<td>1</td>
+									<td>Mn</td>
 									<td><img src="{{asset('images/'.$data->gambar)}}" alt="no image" width="80" height="80"></td>
 									<td>{{$data->nama}}</td>
 									<td>{{$data->harga}}</td>
-									<td>{{$data->stok}}</td>
+									<td>{{$data->jenis}}</td>
 									<td>
 										<a href="/minuman/{{$data->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
 										<span>|</span>
-										<a href="/minuman/{{$data->id}}/delete"class="btn btn-danger btn-sm">Delete</a>
+										<a href="/minuman/{{$data->id}}/delete"class="btn btn-danger btn-sm" onclick="return confirm('Hapus Data?')">Delete</a>
 									</td>
 								</tr>
 								@endForeach
@@ -82,8 +82,13 @@
 						<input name="hargaMinuman" type="input" class="form-control" id="harga"  placeholder="Harga Minuman">
 					</div>
 					<div class="form-group form-check">
-						<label for="stok">Stok</label>
-						<input name="stokMinuman" type="input" class="form-control" id="stok"  placeholder="Stok Minuman">
+						<label for="stok">Jenis</label>
+						<select name="jenisMinuman" id="" class="form-control">
+							<option value="kopi">Kopi</option>
+							<option value="regular">Regular</option>
+							<option value="umum">Umum</option>
+							<option value="lainnya">Lainnya</option>
+						</select>
 					</div>
 					<div class="form-group form-check">
 						<label class="custom-file-label" for="form-control">Gambar</label>

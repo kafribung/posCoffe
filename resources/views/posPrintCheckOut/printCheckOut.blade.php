@@ -11,6 +11,11 @@
     
     <!-- style -->
     <link rel="stylesheet" href="{{asset('boostrap/css/style.css')}}">
+    <style>
+        body {
+          width: 100%;
+        }
+    </style>
 
 </head>
 <body>
@@ -18,9 +23,9 @@
     <div class="container header">
         <div class="row">
             <div class="col-sm-4">
-                <center><h4><strong>Friendstech COFFE</strong></h4></center>
-                <center><h4><b>Jl.Cinta Rw.Rindu</b></h4></center>
-                <center><h6>Telp. (0413) 81002 Kode Pos 92511</h6></center> 
+                <h4><strong>KOKAS</strong></h4>
+                <h5><b>Jl.Kapasa Raya No.13 AB</b></h5>
+                <h6>0811-4638-489 KodePos 90241</h6> 
                 <hr style="border: 1px dashed black">            
             </div>
         </div>
@@ -30,7 +35,7 @@
     <!-- isi -->
     <div class="container">
         <div class="row">
-            <div class="col-sm-4 judul">
+            <div class="col-sm-12 judul">
                 <table>
                     <tr>
                         <td><h6><em>Kasir</em></h6></td>
@@ -43,7 +48,7 @@
                     </tr>
                     <tr>
                         <td><h6>Tanggal/Waktu</h6></td>
-                        <td><h6>: {{$datas->updated_at}}</h6></td>
+                        <td><h6>: {{date('m-d-Y')}}</h6></td>
                     </tr>
                     <tr>
                         <td><h6>Tampat</h6></td>
@@ -53,33 +58,35 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-6">
                 <span>------------------</span>
                 <h6>Makanan</h6>
                 <ul type="disk">
                     <?php $totalMinuman=0;$totalMakanan=0;$total=0; ?>
-                    <li>
+                    
                         @foreach($datas->makanan as $makanan) 
+                        <li>
                         {{$makanan->nama}} ({{ $totalMakanan+=$makanan->harga}})
-                        @endForeach
                     </li>
+
+                        @endForeach
                 </ul>
                 <span>------------------</span>
                 <h6>Minuman</h6>
                 <ul type="disk">
-                    <li>
-                        @foreach($datas->Minuman as $minuman) 
-                        {{$minuman->nama}} ({{$totalMinuman+=$minuman->harga}})
-                        @endForeach
-                    </li>
+                    @foreach($datas->Minuman as $minuman) 
+                        <li>
+                            {{$minuman->nama}} ({{$totalMinuman+=$minuman->harga}})
+                        </li>
+                     @endForeach
                 </ul> 
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-6">
                 <h6>Total</h6>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <h6>Rp.<?= $total=$totalMinuman+$totalMakanan?></h6>
             </div>
         </div>
@@ -87,10 +94,9 @@
         <div class="row">
             <div class="col-sm-4">
                 <hr style="border: 1px dashed black"> 
-                <center><h4>TERIMA KASIH</h4></center>
-                <center><h6>Jangan Lupa Kembali</h6></center>
-
-                <hr style="border: 1px dashed black"> 
+                <h5>Terima Kasih</h5>
+                <h6>Jangan lupa kembali</h6>
+                <hr style="border: 1px dashed black">
             </div>
         </div>
 

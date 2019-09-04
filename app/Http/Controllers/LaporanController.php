@@ -3,21 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pesan;
-
-class TerjualController extends Controller
+use App\Laporan;
+class LaporanController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        
-        $data = Pesan::latest()->where('bayar', '1')->paginate(10);
-        
-        return view('posUser.terjual')->withDatas($data);
+        $data = Laporan::latest()->get();
+        return view('posAdmin.analisa')->withDatas($data);
     }
 
     /**

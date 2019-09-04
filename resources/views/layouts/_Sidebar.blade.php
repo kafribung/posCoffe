@@ -17,12 +17,14 @@
 						</ul>
 					</div>
 				</li>
-				<li><a href="{{url('report')}}" class=""><i class="fa fa-line-chart"></i> <span>Report</span></a></li>
-				<li><a href="{{url('analisa')}}" class=""><i class="lnr lnr-sort-amount-asc"></i> <span>Analisa</span></a></li>
+				<li><a href="{{url('stok')}}" class=""><i class="fa fa-line-chart"></i> <span>Stok</span></a></li>
+				<li><a href="{{url('kas')}}" class=""><i class="lnr lnr-inbox"></i> <span>Kas</span></a></li>
+				<li><a href="{{url('laporan')}}" class=""><i class="lnr lnr-sort-amount-asc"></i> <span>Laporan</span></a></li>
 				@else
-				<li><a href="{{url('pesanan')}}" class=""><i class="lnr lnr-book"></i> <span>Data Pemesan</span></a></li>
-				<li><a href="{{url('checkout')}}" class=""><i class="lnr lnr-cart"></i> <span>Check Out</span></a></li>
-				<li><a href="{{url('terjual')}}" class=""><i class="lnr lnr-chart-bars"></i> <span>Terjual</span></a></li>
+				<li><a href="{{url('pesanan')}}" class=""><i class="lnr lnr-book"></i> <span>Kasir</span></a></li>
+				<li><a href="{{url('checkout')}}" class=""><i class="lnr lnr-cart"></i> <span>Data Pemesan</span></a></li>
+				<li><a href="{{url('terjual')}}" class=""><i class="lnr lnr-chart-bars"></i> <span>Laporan Penjualan</span></a></li>
+				<li><a href="{{url('pengeluaran')}}" class=""><i class="lnr lnr lnr-rocket"></i> <span>Pengeluaran</span></a></li>
 				@endif
 				@endguest			
 			</ul>

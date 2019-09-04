@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMinumsTable extends Migration
+class FixPesa extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateMinumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('minums', function (Blueprint $table) {
-            $table->increments('id');
-             $table->string('gambar');
-            $table->string('nama');
-            $table->float('harga',9,2);
-            $table->string('jenis',21);
-            $table->timestamps();
+        Schema::table('pesans', function (Blueprint $table) {
+            $table->float('total',12,2);
         });
     }
 
@@ -30,6 +25,8 @@ class CreateMinumsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('minums');
+        Schema::table('pesans', function (Blueprint $table) {
+            
+        });
     }
 }

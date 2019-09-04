@@ -39,9 +39,9 @@
 									<td>
 										<a href="/manajemen/{{$data->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
 										<span>|</span>
-										<a id="tombol" class="btn btn-danger btn-sm" onclick="swal.fire({title: 'Are you sure?',
-											text: 'You  be able to revert this!',
-											type: 'warning',
+										<a id="tombol" class="btn btn-danger btn-sm" onclick="swal.fire({title: 'Kamu setuju?',
+											text: 'Hilang secara permanen!',
+											type: 'Hati-hati',
 											showCancelButton: true,
 											confirmButtonColor: '#3085d6',
 											cancelButtonColor: '#d33',
@@ -92,7 +92,7 @@
 					</div>
 					<div class="form-group">
 						<label for="email">Email address</label>
-						<input name="email" type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+						<input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
 					</div>
 					<div class="form-group">
 						<label for="username">Password</label>

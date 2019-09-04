@@ -1,23 +1,20 @@
 <?php
-
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use App\Pesan;
-
-class TerjualController extends Controller
+use App\Http\Controllers\Controller;
+use App\Pengeluaran;
+class TanggalController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index($tanggal)
     {
-        
-        $data = Pesan::latest()->where('bayar', '1')->paginate(10);
-        
-        return view('posUser.terjual')->withDatas($data);
+        $data = Pengeluaran::where('created_at', 'LIKE', '%'.$tanggal.'%')->get();
+        return $data;
     }
 
     /**

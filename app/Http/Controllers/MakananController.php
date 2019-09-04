@@ -29,7 +29,7 @@ class MakananController extends Controller
         $makanan = new Makanan;
         $makanan->nama = $request->nama;
         $makanan->harga = $request->harga;
-        $makanan->stok = $request->stok;
+        $makanan->jenis = $request->jenis;
 
         if ($request->hasFile('gambar')) 
         {
@@ -42,7 +42,7 @@ class MakananController extends Controller
         } 
          $makanan->save();
         
-        return redirect('/makanan');
+        return redirect('/makanan')->with('sukses', 'Makanan Berhasil Ditambahkan!');
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 use App\Makanan;
 use App\Minum;
+use App\Stok;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,13 +16,16 @@ class MakananController extends Controller
      */
     public function index(Request $request, $id)
     {
-         $data = Minum::findOrFail($id);
+        $stok = Stok::latest()->first();
+        $data = Minum::findOrFail($id);
         $set = $data->harga;
         $pembilang = $request['jumlah'];
-
-        $data->stok -= ($pembilang / $set);
-        $data->save();
-        return ['pesan'=>"sukses"];
+        if($data->jenis == 'kopi'){
+            $stok->stok_kopi -= (($pembilang / $set) *15);
+            $stok->save();
+            return ['pesan'=>"sukses"];
+        }
+        return ['pesan'=>"bukan kopi"];
     }
 
     /**
@@ -76,13 +80,13 @@ class MakananController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Makanan::findOrFail($id);
-        $set = $data->harga;
-        $pembilang = $request['jumlah'];
+        // $data = Makanan::findOrFail($id);
+        // $set = $data->harga;
+        // $pembilang = $request['jumlah'];
 
-        $data->stok -= ($pembilang / $set);
-        $data->save();
-        return ['pesan'=>"sukses"];
+        // $data->stok -= ($pembilang / $set);
+        // $data->save();
+        // return ['pesan'=>"sukses"];
     }
 
     /**

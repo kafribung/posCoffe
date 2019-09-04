@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pesan;
-
+use App\Laporan;
+use App\Makanan;
+use App\Minum;
 class CheckoutController extends Controller
 {
     /**
@@ -66,6 +68,24 @@ class CheckoutController extends Controller
         return view('posPrintCheckOut.printCheckOut')->withDatas($data);
     }
 
+    
+
+    public function editutama($id)
+    {
+        $edit = Pesan::findOrFail($id);
+        $makanan = Makanan::latest()->get();
+        $minuman = Minum::latest()->get();
+        return view('posEditDelete.editCheckout')->withDatas($edit)->withMakanans($makanan)->withMinumans($minuman);
+    }
+
+
+    public function updateutama(Request $request, $id) {
+             $data = Pesan::findOrFail($id);
+             $data->update($request->all());
+             $data->save();   
+             return redirect('/checkout');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -78,7 +98,9 @@ class CheckoutController extends Controller
         $data = Pesan::findOrFail($id);
         $data->bayar=1;
         $data->save();
-        
+        $laporan= new Laporan;
+        $laporan->kasBesar = $data->total;
+        $laporan->save();
     }
 
     /**

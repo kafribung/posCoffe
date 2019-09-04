@@ -3,21 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Kas;
+use App\Pengeluaran;
 use App\Pesan;
+use App\Laporan;
 
-class TerjualController extends Controller
+class KasController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
+        $total = 0;
+        $totalKas = 0;
+        $kasBank= 0;
         
-        $data = Pesan::latest()->where('bayar', '1')->paginate(10);
-        
-        return view('posUser.terjual')->withDatas($data);
+        /*Kas Sekarang*/  
+        $datas = Pesan::where('created_at', 'LIKE', '%'.date('Y-m-d').'%')->get();
+        foreach ($datas as $data) {
+            $total += $data->total;
+        }
+        $laporan= Laporan::get()->sum('kasBesar');
+        return view('posAdmin.kas')->withTot($total)->withKas($laporan);
+
     }
 
     /**
@@ -25,9 +36,18 @@ class TerjualController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+        $kas = new Kas;
+        $kas->kasKecil = $request->kasKecil;
+        $kas->save();
+
+        $laporan= new Laporan;
+        $laporan->kasBesar = $request->kasKecil;
+        $laporan->save();
+
+        return redirect('/kas')->with('sukses', 'Kas Kecil Berhasil Ditambahkan!');
     }
 
     /**

@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use App\Pesan;
+use App\Http\Controllers\Controller;
+use App\Laporan;
 
-class TerjualController extends Controller
+class TglanalisaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index($tanggal)
     {
-        
-        $data = Pesan::latest()->where('bayar', '1')->paginate(10);
-        
-        return view('posUser.terjual')->withDatas($data);
+        // $data = Laporan::get()->groupBy('created_at')->sum('kasBesar');
+        $data = Laporan::where('created_at', 'LIKE', '%'.$tanggal.'%')->get()->sum('kasBesar');
+        return json_encode(["tanggal" => $tanggal, "masuk" =>$data]);
     }
 
     /**

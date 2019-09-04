@@ -2,7 +2,11 @@
 
 @section('content')
 
-
+@if(session('sukses'))
+<div class="alert alert-success" role="alert">
+	{{session('sukses')}}
+</div>
+@endIf
 <div class="main-content">
 	<div class="container-fluid">
 		<h3 class="page-title">Daftar Makanan</h3>
@@ -20,26 +24,26 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th>#</th>
+									<th>Kode</th>
 									<th>Gambar</th>
 									<th>Nama</th>
 									<th>Harga</th>
-									<th>Stok</th>
+									<th>Jenis</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
 								@foreach($datas as $data)
 								<tr>
-									<td>1</td>
+									<td>Mk</td>
 									<td><img src="{{asset('images/'.$data->gambar)}}" alt="no image" width="100" height="100"></td>
 									<td>{{$data->nama}}</td>
 									<td>{{$data->harga}}</td>
-									<td>{{$data->stok}}</td>
+									<td>{{$data->jenis}}</td>
 									<td>
 										<a href="/makanan/{{$data->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
 										<span>|</span>
-										<a href="/makanan/{{$data->id}}/delete"class="btn btn-danger btn-sm" onclick="swal('Hapus', 'Data Berhasil Dihapus', 'error')">Delete</a>
+										<a href="/makanan/{{$data->id}}/delete"class="btn btn-danger btn-sm" onclick="return confirm('Hapus Data?')">Delete</a>
 									</td>
 								</tr>
 								@endForeach
@@ -78,8 +82,13 @@
 						<input name="harga" type="input" class="form-control" id="harga"  placeholder="Harga Makanan">
 					</div>
 					<div class="form-group form-check">
-						<label for="stok">Stok</label>
-						<input name="stok" type="input" class="form-control" id="stok"  placeholder="Stok Makanan">
+						<label for="stok">Jenis</label>
+						<select name="jenis" id="" class="form-control">
+							<option value="kopi">Kopi</option>
+							<option value="regular">Regular</option>
+							<option value="umum">Umum</option>
+							<option value="lainnya">Lainnya</option>
+						</select>
 					</div>
 					<div class="form-group form-check">
 						<label class="custom-file-label" for="form-control">Gambar</label>

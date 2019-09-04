@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Makanan;
 use App\Minum;
 use App\Pesan;
-
 class PesananController extends Controller
 {
     /**
@@ -18,11 +15,8 @@ class PesananController extends Controller
     {
         $makanan = Makanan::latest()->get();
         $minuman = Minum::latest()->get();
-
         return view('posUser.pesanan')->withMakanans($makanan)->withMinumans($minuman);
-
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -33,15 +27,13 @@ class PesananController extends Controller
         $pesanan = new Pesan;
         $pesanan->nama = $request->nama;
         $pesanan->tempat = $request->tempat;
+        $pesanan->total = $request->bacot;
         $pesanan->save();
         $pesanan->makanan()->sync($request->beli, false);
         $pesanan->Minuman()->sync($request->beli1, false);
         
-
         return redirect('/checkout');  
-
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -52,7 +44,6 @@ class PesananController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -63,7 +54,6 @@ class PesananController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -74,7 +64,6 @@ class PesananController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -86,7 +75,6 @@ class PesananController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *

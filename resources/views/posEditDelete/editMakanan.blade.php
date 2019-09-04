@@ -26,8 +26,13 @@
 									<input name="harga" type="input" class="form-control" id="harga"  placeholder="Harga Makanan" value="{{$datas -> harga}}">
 								</div>
 								<div class="form-group form-check">
-									<label for="stok">Stok</label>
-									<input name="stok" type="input" class="form-control" id="stok"  placeholder="Stok Makanan" value="{{$datas -> stok}}">
+									<label for="stok">Jenis</label>
+									<select name="jenis" id="" class="form-control">
+										<option value="kopi">Kopi</option>
+										<option value="regular">Regular</option>
+										<option value="umum">Umum</option>
+										<option value="lainnya">Lainnya</option>
+									</select>
 								</div>
 								<div class="form-group form-check">
 									<label class="custom-file-label" for="form-control">Gambar</label>

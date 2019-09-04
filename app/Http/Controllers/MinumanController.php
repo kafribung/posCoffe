@@ -28,7 +28,7 @@ class MinumanController extends Controller
         $minuman = new Minum;
         $minuman->nama = $request->namaMinuman;
         $minuman->harga = $request->hargaMinuman;
-        $minuman->stok = $request->stokMinuman;
+        $minuman->jenis = $request->jenisMinuman;
 
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
